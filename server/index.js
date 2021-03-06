@@ -1,15 +1,27 @@
 const express = require('express');
 const morgan = require('morgan');
+const path = require('path');
 
+// consts
 const PORT = 3001;
+const STATIC_INDEX = path.join(__dirname, '../build/index.html');
+const STATIC_FOLDER = path.join(__dirname, '../build/static');
 
+// info
+console.log(`Using STATIC_INDEX: ${STATIC_INDEX}`);
+console.log(`Using STATIC_FOLDER: ${STATIC_FOLDER}`);
+
+// create app & register middleware
 let app = express();
 app.use(morgan('combined'));
+app.use('/static', express.static(STATIC_FOLDER));
 
+// routes handlers
 app.get('/', (_, res) => {
-  res.send('Hello World');
+  res.sendFile(STATIC_INDEX);
 });
 
+// start server
 app.listen(PORT, () => {
   console.log(`Server is lisenting on PORT: ${PORT}`);
 });
