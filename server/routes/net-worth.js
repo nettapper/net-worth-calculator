@@ -1,0 +1,45 @@
+var express = require('express')
+var router = express.Router()
+
+let fake_res = {
+  "current-currency": "USD",
+  "new-currency": null,
+  "assets": {
+    "chequing": 1950,
+    "savings-for-taxes": 0,
+    "rainy-day-fund": 1560,
+    "savings-for-fun": 1.56,
+    "savings-for-travel": 3120,
+    "savings-for-personal-development": 2340,
+    "investment-1": 3900,
+    "investment-2": 17160,
+    "investment-3": 0,
+    "primary-home": 117000,
+    "second-home": 0,
+    "other": 0
+  },
+  "liabilities": {
+    "credit-card-1": 0,
+    "credit-card-2": 0,
+    "mortgage-1": 78000,
+    "mortgage-2": 0,
+    "line-of-credit": 0,
+    "investment-loan": 0
+  },
+  "total-assets": 139031.56,
+  "total-liabilities": 78000,
+  "total-net-worth": 61031.56,
+  "info": ["Using 1 CAD = 0.78 USD"],
+  "warning": [
+    "Could not get exchange rate from exchangeratesapi.io, using cached value.",
+    "Warning still using fake response"
+  ],
+  "error": null
+};
+
+
+router.post('/', function (_, res) {
+  res.json(fake_res);
+})
+
+module.exports = router

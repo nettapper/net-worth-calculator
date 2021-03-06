@@ -2,6 +2,8 @@ const express = require('express');
 const morgan = require('morgan');
 const path = require('path');
 
+let netWorthRouter = require('./routes/net-worth');
+
 // consts
 const PORT = 3001;
 const STATIC_INDEX = path.join(__dirname, '../build/index.html');
@@ -20,6 +22,9 @@ app.use('/static', express.static(STATIC_FOLDER));
 app.get('/', (_, res) => {
   res.sendFile(STATIC_INDEX);
 });
+
+app.use('/api/v1/net-worth', netWorthRouter);
+
 
 // start server
 app.listen(PORT, () => {
