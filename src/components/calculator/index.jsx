@@ -112,6 +112,10 @@ function Assets() {
           <label>Other:</label>
           <input name="other" type="number" />
         </div>
+        <div className="calculator__formelement calculator__formelement--total">
+          <label>Total Assets:</label>
+          <input name="total-assets" type="number" disabled />
+        </div>
       </form>
     </div>
   );
@@ -147,6 +151,10 @@ function Liabilities() {
         <div className="calculator__formelement">
           <label>Investment Loan:</label>
           <input name="investment-loan" type="number" />
+        </div>
+        <div className="calculator__formelement calculator__formelement--total">
+          <label>Total Liabilities:</label>
+          <input name="total-liabilities" type="number" disabled />
         </div>
       </form>
     </div>
