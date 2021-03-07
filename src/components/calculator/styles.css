@@ -7,7 +7,7 @@
   flex-wrap: wrap;
 }
 
-.calculator__networth {
+.calculator__networthcontainer {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -17,16 +17,16 @@
   flex: 1 1 100%;
 }
 
+.calculator__networthtotal {
+  font-weight: bold;
+  color: #01579b;
+}
+
 .calculator__currencyselect {
   margin-left: 0.5rem;
 }
 
-.calculator__assets {
-  padding: 1rem;
-  flex-grow: 1;
-}
-
-.calculator__liabilities {
+.calculator__formcontainer {
   padding: 1rem;
   flex-grow: 1;
 }
@@ -62,4 +62,8 @@
 .calculator__formelement--total {
   font-weight: bold;
   color: #01579b;
+}
+
+.calculator__formelementsymbol {
+  padding-right: 0.5rem;
 }
