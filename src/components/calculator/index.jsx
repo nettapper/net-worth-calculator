@@ -60,53 +60,58 @@ function NetWorth() {
 function Assets() {
   return (
     <div className="calculator__assets">
-      <h2>Assets</h2>
-      <form className="calculator__assetsform">
-        <label>
-          chequing:
+      <h2 className="calculator__formheading">Assets</h2>
+      <form className="calculator__form">
+        <h3 className="calculator__formgrouping">Cash and Investments</h3>
+        <div className="calculator__formelement">
+          <label>Chequing:</label>
           <input name="chequing" type="number" />
-        </label>
-        <label>
-          savings for taxes
+        </div>
+        <div className="calculator__formelement">
+          <label>Savings for Taxes:</label>
           <input name="savings-for-taxes" type="number" />
-        </label>
-        <label>
-          rainy day fund
+        </div>
+        <div className="calculator__formelement">
+          <label>Rainy Day Fund:</label>
           <input name="rainy-day-fund" type="number" />
-        </label>
-        <label>
-          savings for fun
+        </div>
+        <div className="calculator__formelement">
+          <label>Savings for Fun:</label>
           <input name="saving-for-fun" type="number" />
-        </label>
-        <label>
-          savings for travel
+        </div>
+        <div className="calculator__formelement">
+          <label>Savings for Travel:</label>
           <input name="savings-for-travel" type="number" />
-        </label>
-        <label>
-          savings for personal development
+        </div>
+        <div className="calculator__formelement">
+          <label>Savings for Personal Development:</label>
           <input name="savings-for-personal-development" type="number" />
-        </label>
-        <label>
-          investment 1<input name="investment-1" type="number" />
-        </label>
-        <label>
-          investment 2<input name="investment-2" type="number" />
-        </label>
-        <label>
-          investment 3<input name="investment-3" type="number" />
-        </label>
-        <label>
-          primary home
+        </div>
+        <div className="calculator__formelement">
+          <label>Investment 1:</label>
+          <input name="investment-1" type="number" />
+        </div>
+        <div className="calculator__formelement">
+          <label>Investment 2:</label>
+          <input name="investment-2" type="number" />
+        </div>
+        <div className="calculator__formelement">
+          <label>Investment 3:</label>
+          <input name="investment-3" type="number" />
+        </div>
+        <h3 className="calculator__formgrouping">Long Term Assets</h3>
+        <div className="calculator__formelement">
+          <label>Primary Home:</label>
           <input name="primary-home" type="number" />
-        </label>
-        <label>
-          second home
+        </div>
+        <div className="calculator__formelement">
+          <label>Second Home:</label>
           <input name="second-home" type="number" />
-        </label>
-        <label>
-          other
+        </div>
+        <div className="calculator__formelement">
+          <label>Other:</label>
           <input name="other" type="number" />
-        </label>
+        </div>
       </form>
     </div>
   );
@@ -115,28 +120,34 @@ function Assets() {
 function Liabilities() {
   return (
     <div className="calculator__liabilities">
-      <h2>Liabilities</h2>
-      <form className="calculator__liabilitiesform">
-        <label>
-          credit card 1<input name="credit-card-1" type="number" />
-        </label>
-        <label>
-          credit card 2<input name="credit-card-2" type="number" />
-        </label>
-        <label>
-          mortgage 1<input name="mortgage-1" type="number" />
-        </label>
-        <label>
-          mortgage 2<input name="mortgage-2" type="number" />
-        </label>
-        <label>
-          line of credit
+      <h2 className="calculator__formheading">Liabilities</h2>
+      <form className="calculator__form">
+        <h3 className="calculator__formgrouping">Short Term Liabilities</h3>
+        <div className="calculator__formelement">
+          <label>Credit Card 1:</label>
+          <input name="credit-card-1" type="number" />
+        </div>
+        <div className="calculator__formelement">
+          <label>Credit Card :2</label>
+          <input name="credit-card-2" type="number" />
+        </div>
+        <h3 className="calculator__formgrouping">Long Term Debt</h3>
+        <div className="calculator__formelement">
+          <label>Mortgage 1:</label>
+          <input name="mortgage-1" type="number" />
+        </div>
+        <div className="calculator__formelement">
+          <label>Mortgage 2:</label>
+          <input name="mortgage-2" type="number" />
+        </div>
+        <div className="calculator__formelement">
+          <label>Line of Credit:</label>
           <input name="line-of-credit" type="number" />
-        </label>
-        <label>
-          investment loan
+        </div>
+        <div className="calculator__formelement">
+          <label>Investment Loan:</label>
           <input name="investment-loan" type="number" />
-        </label>
+        </div>
       </form>
     </div>
   );

@@ -13,7 +13,6 @@
   align-items: center;
   justify-content: space-around;
   flex-wrap: wrap;
-  background-color: green;
   padding: 1rem;
   flex: 1 1 100%;
 }
@@ -23,24 +22,40 @@
 }
 
 .calculator__assets {
-  background-color: red;
   padding: 1rem;
   flex-grow: 1;
-}
-
-.calculator__assetsform {
-  display: flex;
-  flex-direction: column;
 }
 
 .calculator__liabilities {
-  background-color: blue;
   padding: 1rem;
   flex-grow: 1;
 }
 
-.calculator__liabilitiesform {
+.calculator__form {
   display: flex;
   flex-direction: column;
 }
 
+.calculator__formheading {
+  margin: 0rem 0rem 0.75rem 0rem;
+  /* TODO pull my colors into to root style sheet */
+  color: #0288d1;
+  border-bottom: 0.05rem solid;
+}
+
+.calculator__formgrouping {
+  margin: 0rem 0rem 0.5rem 0rem;
+  color: #01579b;
+  font-weight: bold;
+  border-bottom: 0.05rem dashed;
+}
+
+.calculator__formelement {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding: 0.25rem 0rem;
+  font-weight: bold;
+}
