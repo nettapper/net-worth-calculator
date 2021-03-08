@@ -15,14 +15,14 @@ async function conversionRate(currentCurrency, newCurrency) {
   // check cache first
   if (cache.getExpireTime() < Date.now()) {
     const res = await axios.get("https://api.exchangeratesapi.io/latest?base=CAD");
-    console.log('res.data', res.data);
+    // console.log('res.data', res.data);
     cache.setData(res.data);
   }
 
 
   // currentCurrency is same as base just look up newCurrency
   const data = cache.getData();
-  console.log('cache.getData', data);
+  // console.log('cache.getData', data);
   if (data.base === currentCurrency) {
     if (data?.rates[newCurrency])
       return { rate: data.rates[newCurrency], "current-currency": newCurrency, info, warning, error };

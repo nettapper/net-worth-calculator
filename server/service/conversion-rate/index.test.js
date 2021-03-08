@@ -2,7 +2,21 @@ const axios = require("axios");
 const conversionRate = require("./index");
 
 jest.mock('axios');
-axios.get.mockResolvedValue({
+axios.get.mockResolvedValueOnce({
+  data: {
+    base: "CAD",
+    date: "2021-03-05",
+    rates: {
+      AUD: 99,
+      CAD: 1.0,
+      EUR: 0.65,
+      GBP: 0.56,
+      JPY: 85.2,
+      NZD: 1.10,
+      USD: 0.78,
+    },
+  }
+}).mockResolvedValue({
   data: {
     base: "CAD",
     date: "2021-03-05",
@@ -18,6 +32,10 @@ axios.get.mockResolvedValue({
   }
 });
 
+beforeEach(() => {
+  axios.get.mockClear();
+});
+
 test("same currency should have conversion of 1", async () => {
   expect((await conversionRate("CAD", "CAD")).rate).toBe(1);
   expect((await conversionRate("USD", "USD")).rate).toBe(1);
@@ -28,24 +46,29 @@ test("null new currency should have conversion of 1", async () => {
   expect((await conversionRate("MXN", undefined)).rate).toBe(1);
 });
 
-test("object should have rate/info/warning/error", async () => {
+test("object should have rate/currentCurrency/info/warning/error", async () => {
   const obj = await conversionRate("CAD", "USD");
-  console.log(obj);
   expect(obj.rate).toBeDefined();
+  expect(obj["current-currency"]).toBe("USD");
   expect(obj.info).toBeDefined();
   expect(obj.warning).toBeDefined();
   expect(obj.error).toBeDefined();
+
+  expect((await conversionRate("CAD", "CAD"))["current-currency"]).toBe("CAD");
+  expect((await conversionRate("CAD", null))["current-currency"]).toBe("CAD");
 });
 
-it("can convert from base to new currency", async () => {
+test("can convert from base to new currency", async () => {
   const obj = await conversionRate("CAD", "USD");
   expect(obj.rate).toEqual(0.78);
+  expect(obj["current-currency"]).toBe("USD");
 
   const obj2 = await conversionRate("CAD", "EUR");
   expect(obj2.rate).toEqual(0.65);
+  expect(obj2["current-currency"]).toBe("EUR");
 });
 
-it("can convert between two non-base currencies", async () => {
+test("can convert between two non-base currencies", async () => {
   /* 1 CAD / .65 EUR
    * 1 CAD / .78 USD
    *
@@ -61,4 +84,13 @@ it("can convert between two non-base currencies", async () => {
   const obj2 = await conversionRate("EUR", "JPY");
   expect(obj2.rate).toBeGreaterThan(131.07);
   expect(obj2.rate).toBeLessThan(131.08);
+});
+
+test("will pull from cache for rapid requests", async () => {
+  const obj = await conversionRate("CAD", "AUD");
+  expect(obj.rate).toEqual(99);
+
+  // it should pull 99 from the cache
+  const obj2 = await conversionRate("CAD", "AUD");
+  expect(obj2.rate).toEqual(99);
 });
