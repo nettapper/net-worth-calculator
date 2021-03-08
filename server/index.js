@@ -1,6 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const path = require('path');
+const cors = require('cors');
 
 let netWorthRouter = require('./routes/net-worth');
 
@@ -16,7 +17,11 @@ console.log(`Using STATIC_FOLDER: ${STATIC_FOLDER}`);
 // create app & register middleware
 let app = express();
 app.use(morgan('combined'));
+app.use(cors()); // allow all cross origin requests
 app.use('/static', express.static(STATIC_FOLDER));
+
+//enable pre-flight across-the-board
+app.options('*', cors()) // include before other routes
 
 // routes handlers
 app.get('/', (_, res) => {

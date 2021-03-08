@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSelector, useDispatch }  from "react-redux";
 import { networthRequest } from "../../ducks/networth";
 import "./styles.css";
@@ -10,6 +10,12 @@ import { getCurrencySymbol, formatCurrency } from "../../util/currency";
 function Calculator() {
   const reduxState = useSelector(state => state.networth);
   const [ state, setState ] = useState(reduxState);
+
+  // update the loacal state if the ruduxState changes
+  useEffect(() => {
+    setState(reduxState);
+  }, [reduxState]);
+
   const dispatch = useDispatch();
 
   let currencies = [

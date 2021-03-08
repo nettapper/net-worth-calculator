@@ -1,4 +1,4 @@
-import { takeEvery, put, call } from "redux-saga/effects";
+import { debounce, put, call } from "redux-saga/effects";
 import axios from "axios";
 
 // Actions
@@ -59,7 +59,7 @@ export function reducer(state = initState, action) {
   switch (action.type) {
     case NETWORTH_RESPONSE:
       // returning a copy of state with spread operators
-      return { ...state, payload };
+      return { ...state, ...payload };
     default:
       return state;
   }
@@ -67,7 +67,8 @@ export function reducer(state = initState, action) {
 
 // Axios API
 async function postNetworth(payload) {
-  const res = await axios.post('/api/v1/net-worth', payload);
+  // TODO would be better to have a proxy than hardcode the server
+  const res = await axios.post('http://localhost:3001/api/v1/net-worth', payload);
   return res;
 }
 
@@ -75,17 +76,16 @@ async function postNetworth(payload) {
 // Sagas
 function* requestSaga(action) {
   try {
-    const res = yield call(postNetworth(action.payload));
+    const res = yield call(postNetworth, action.payload);
     // todo validations
     yield put(networthResponse(res.data));
   } catch(e) {
     console.log(e);
-    put(networthResponse({ error: ["Could not complete API call successfully"] }));
+    yield put(networthResponse({ error: ["Could not complete API call successfully"] }));
   }
 }
 
 export function* saga() {
-  console.log("saga capturing NETWORTH_REQUEST");
-  yield takeEvery(NETWORTH_REQUEST, requestSaga);
+  yield debounce(500, NETWORTH_REQUEST, requestSaga);
 }
 

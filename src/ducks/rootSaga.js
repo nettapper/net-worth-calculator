@@ -4,7 +4,7 @@ import { saga as networth } from "./networth";
 
 function* rootSaga() {
   yield all([
-    networth
+    networth()
   ]);
 }
 
