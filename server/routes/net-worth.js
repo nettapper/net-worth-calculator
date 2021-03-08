@@ -4,10 +4,10 @@ var calculate = require('../service/accountant');
 
 var router = express.Router()
 
-router.post('/', function (req, res) {
+router.post('/', async function (req, res) {
   // TODO error handling
   console.log(req.body);
-  const rateObj = conversionRate(req.body["current-currency"], req.body["new-currency"]);
+  const rateObj = await conversionRate(req.body["current-currency"], req.body["new-currency"]);
   const convertedObj = calculate(req.body.assets, req.body.liabilities, rateObj.rate);
   const resJson = {
     ...convertedObj,
