@@ -14,6 +14,7 @@ router.post('/', async function (req, res) {
     info: [...rateObj.info, ...convertedObj.info],
     warning: [...rateObj.warning, ...convertedObj.warning],
     error: [...rateObj.error, ...convertedObj.error],
+    "current-currency": rateObj["current-currency"],
     "new-currency": null
   };
   res.json(resJson);
