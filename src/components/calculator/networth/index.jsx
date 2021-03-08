@@ -1,14 +1,10 @@
-import { useState } from "react";
-
-function NetWorth({ total, currencies }) {
-  const [curr, changeCurr] = useState(
-    currencies.length > 0 ? currencies[0] : "No Currencies Found"
-  );
-  const handleChange = (e) => {
-    if (e?.target?.value && e.target.target !== curr) {
-      changeCurr(e.target.value);
+function NetWorth({ total, currentCurrency, currencies, handleChange }) {
+  const onChange = (e) => {
+    if (e?.target?.value && e.target.target !== currentCurrency) {
+      handleChange(e.target.value);
     }
   };
+
 
   return (
     <div className="calculator__networthcontainer">
@@ -21,8 +17,8 @@ function NetWorth({ total, currencies }) {
           Select Currency:
           <select
             className="calculator__currencyselect"
-            value={curr}
-            onChange={handleChange}
+            value={currentCurrency}
+            onChange={onChange}
           >
             {currencies.map((item) => (
               <option key={item} value={item}>

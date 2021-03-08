@@ -1,4 +1,9 @@
-function Liabilities({ liabilities, currencySymbol, total }) {
+function Liabilities({ liabilities, currencySymbol, total, handleChange }) {
+  const onChange = (e) => {
+    const { name, value } = e.target;
+    handleChange({ ...liabilities, [name]: value });
+  };
+
   return (
     <div className="calculator__formcontainer">
       <h2 className="calculator__formheading">Liabilities</h2>
@@ -14,6 +19,7 @@ function Liabilities({ liabilities, currencySymbol, total }) {
               name="credit-card-1"
               type="number"
               value={liabilities["credit-card-1"]}
+              onChange={onChange}
             />
           </div>
         </div>
@@ -27,6 +33,7 @@ function Liabilities({ liabilities, currencySymbol, total }) {
               name="credit-card-2"
               type="number"
               value={liabilities["credit-card-2"]}
+              onChange={onChange}
             />
           </div>
         </div>
@@ -41,6 +48,7 @@ function Liabilities({ liabilities, currencySymbol, total }) {
               name="mortgage-1"
               type="number"
               value={liabilities["mortgage-1"]}
+              onChange={onChange}
             />
           </div>
         </div>
@@ -54,6 +62,7 @@ function Liabilities({ liabilities, currencySymbol, total }) {
               name="mortgage-2"
               type="number"
               value={liabilities["mortgage-2"]}
+              onChange={onChange}
             />
           </div>
         </div>
@@ -67,6 +76,7 @@ function Liabilities({ liabilities, currencySymbol, total }) {
               name="line-of-credit"
               type="number"
               value={liabilities["line-of-credit"]}
+              onChange={onChange}
             />
           </div>
         </div>
@@ -80,6 +90,7 @@ function Liabilities({ liabilities, currencySymbol, total }) {
               name="investment-loan"
               type="number"
               value={liabilities["investment-loan"]}
+              onChange={onChange}
             />
           </div>
         </div>

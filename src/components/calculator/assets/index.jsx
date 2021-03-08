@@ -1,4 +1,9 @@
-function Assets({ assets, currencySymbol, total }) {
+function Assets({ assets, currencySymbol, total, handleChange }) {
+  const onChange = (e) => {
+    const { name, value } = e.target;
+    handleChange({ ...assets, [name]: value });
+  };
+
   return (
     <div className="calculator__formcontainer">
       <h2 className="calculator__formheading">Assets</h2>
@@ -10,7 +15,7 @@ function Assets({ assets, currencySymbol, total }) {
             <span className="calculator__formelementsymbol">
               {currencySymbol}
             </span>
-            <input name="chequing" type="number" value={assets["chequing"]} />
+            <input name="chequing" type="number" value={assets["chequing"]} onChange={onChange} />
           </div>
         </div>
         <div className="calculator__formelement">
@@ -23,6 +28,7 @@ function Assets({ assets, currencySymbol, total }) {
               name="savings-for-taxes"
               type="number"
               value={assets["savings-for-taxes"]}
+              onChange={onChange}
             />
           </div>
         </div>
@@ -36,6 +42,7 @@ function Assets({ assets, currencySymbol, total }) {
               name="rainy-day-fund"
               type="number"
               value={assets["rainy-day-fund"]}
+              onChange={onChange}
             />
           </div>
         </div>
@@ -46,9 +53,10 @@ function Assets({ assets, currencySymbol, total }) {
               {currencySymbol}
             </span>
             <input
-              name="saving-for-fun"
+              name="savings-for-fun"
               type="number"
               value={assets["savings-for-fun"]}
+              onChange={onChange}
             />
           </div>
         </div>
@@ -62,6 +70,7 @@ function Assets({ assets, currencySymbol, total }) {
               name="savings-for-travel"
               type="number"
               value={assets["savings-for-travel"]}
+              onChange={onChange}
             />
           </div>
         </div>
@@ -75,6 +84,7 @@ function Assets({ assets, currencySymbol, total }) {
               name="savings-for-personal-development"
               type="number"
               value={assets["savings-for-personal-development"]}
+              onChange={onChange}
             />
           </div>
         </div>
@@ -88,6 +98,7 @@ function Assets({ assets, currencySymbol, total }) {
               name="investment-1"
               type="number"
               value={assets["investment-1"]}
+              onChange={onChange}
             />
           </div>
         </div>
@@ -101,6 +112,7 @@ function Assets({ assets, currencySymbol, total }) {
               name="investment-2"
               type="number"
               value={assets["investment-2"]}
+              onChange={onChange}
             />
           </div>
         </div>
@@ -114,6 +126,7 @@ function Assets({ assets, currencySymbol, total }) {
               name="investment-3"
               type="number"
               value={assets["investment-3"]}
+              onChange={onChange}
             />
           </div>
         </div>
@@ -128,6 +141,7 @@ function Assets({ assets, currencySymbol, total }) {
               name="primary-home"
               type="number"
               value={assets["primary-home"]}
+              onChange={onChange}
             />
           </div>
         </div>
@@ -141,6 +155,7 @@ function Assets({ assets, currencySymbol, total }) {
               name="second-home"
               type="number"
               value={assets["second-home"]}
+              onChange={onChange}
             />
           </div>
         </div>
@@ -150,7 +165,7 @@ function Assets({ assets, currencySymbol, total }) {
             <span className="calculator__formelementsymbol">
               {currencySymbol}
             </span>
-            <input name="other" type="number" value={assets["other"]} />
+            <input name="other" type="number" value={assets["other"]} onChange={onChange} />
           </div>
         </div>
         <div className="calculator__formelement calculator__formelement--total">
