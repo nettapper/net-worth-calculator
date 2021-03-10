@@ -1,0 +1,26 @@
+{
+  "current-currency": "CAD",
+  "new-currency": "USD",
+  "assets": {
+    "chequing": 2500,
+    "savings-for-taxes": 0,
+    "rainy-day-fund": 2000,
+    "savings-for-fun": 2,
+    "savings-for-travel": 4000,
+    "savings-for-personal-development": 3000,
+    "investment-1": 5000,
+    "investment-2": 22000,
+    "investment-3": 0,
+    "primary-home": 150000,
+    "second-home": 0,
+    "other": 0
+  },
+  "liabilities": {
+    "credit-card-1": 0,
+    "credit-card-2": 0,
+    "mortgage-1": 100000,
+    "mortgage-2": 0,
+    "line-of-credit": 0,
+    "investment-loan": 0
+  }
+}
