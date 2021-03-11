@@ -14,11 +14,11 @@ function calculate(assets, liabilities, exchangeRate) {
   let totalLiabilities = 0;
 
   // modify the assets and liabilities objs
-  Object.keys(assets).map(function(key, _) {
+  Object.keys(assets).map(function(key) {
     assets[key] *= rate;
     totalAssets += assets[key];
   });
-  Object.keys(liabilities).map(function(key, _) {
+  Object.keys(liabilities).map(function(key) {
     liabilities[key] *= rate;
     totalLiabilities += liabilities[key];
   });
