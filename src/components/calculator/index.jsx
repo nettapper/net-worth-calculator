@@ -11,11 +11,6 @@ function Calculator() {
   const reduxState = useSelector(state => state.networth);
   const [ state, setState ] = useState(reduxState);
 
-  // update the loacal state if the ruduxState changes
-  useEffect(() => {
-    setState(reduxState);
-  }, [reduxState]);
-
   const dispatch = useDispatch();
 
   let currencies = [
@@ -32,8 +27,18 @@ function Calculator() {
   ];
 
   const currentCurrency = state["new-currency"] ? state["new-currency"] : state["current-currency"];
-  const currencySymbol = getCurrencySymbol(currentCurrency);
+  const [currencySymbol, setCurrencySymbol] = useState(getCurrencySymbol(currentCurrency));
 
+  // update the local state if the ruduxState changes
+  useEffect(() => {
+    setState(reduxState);
+    // only update the currencySymbol once the http response has resolved (aka redux state has changed)
+    // this way the currency selector & currencySymbol are independent
+    setCurrencySymbol(getCurrencySymbol(reduxState["current-currency"]));
+  }, [reduxState]);
+
+
+  // handle children component updates
   const handleChange = (prefix, update) => {
     // prefix is used to index into the state object
     const newState = { ...state, [prefix]: update };
