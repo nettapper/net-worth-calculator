@@ -68,7 +68,7 @@ export function reducer(state = initState, action) {
 // Axios API
 async function postNetworth(payload) {
   // TODO would be better to have a proxy than hardcode the server
-  const res = await axios.post('http://localhost:3001/api/v1/net-worth', payload);
+  const res = await axios.post('/api/v1/net-worth', payload);
   return res;
 }
 
