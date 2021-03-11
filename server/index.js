@@ -1,7 +1,7 @@
 const express = require('express');
 const morgan = require('morgan');
 const path = require('path');
-const cors = require('cors');
+/* const cors = require('cors'); */
 const bodyParser = require('body-parser');
 
 let netWorthRouter = require('./routes/net-worth');
@@ -19,13 +19,13 @@ console.log(`Using STATIC_FOLDER: ${STATIC_FOLDER}`);
 let app = express();
 
 app.use(morgan('combined'));
-app.use(cors()); // allow all cross origin requests
+/* app.use(cors()); // allow all cross origin requests */
 app.use(bodyParser.json())
 
 app.use('/static', express.static(STATIC_FOLDER));
 
 //enable pre-flight across-the-board
-app.options('*', cors()) // include before other routes
+/* app.options('*', cors()) // include before other routes */
 
 // routes handlers
 app.get('/', (_, res) => {
