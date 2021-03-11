@@ -1,7 +1,9 @@
 function Assets({ assets, currencySymbol, total, handleChange }) {
   const onChange = (e) => {
     const { name, value } = e.target;
-    handleChange({ ...assets, [name]: value });
+    const num = Number(value);  // convert str to num
+    if (!isNaN(num))
+      handleChange({ ...assets, [name]: num });
   };
 
   return (
@@ -10,7 +12,7 @@ function Assets({ assets, currencySymbol, total, handleChange }) {
       <form className="calculator__form">
         <h3 className="calculator__formgrouping">Cash and Investments</h3>
         <div className="calculator__formelement">
-          <label for="calculator-chequing">Chequing:</label>
+          <label htmlFor="calculator-chequing">Chequing:</label>
           <div>
             <span className="calculator__formelementsymbol">
               {currencySymbol}
@@ -25,7 +27,7 @@ function Assets({ assets, currencySymbol, total, handleChange }) {
           </div>
         </div>
         <div className="calculator__formelement">
-          <label for="calculator-savings-for-taxes">Savings for Taxes:</label>
+          <label htmlFor="calculator-savings-for-taxes">Savings for Taxes:</label>
           <div>
             <span className="calculator__formelementsymbol">
               {currencySymbol}
@@ -40,7 +42,7 @@ function Assets({ assets, currencySymbol, total, handleChange }) {
           </div>
         </div>
         <div className="calculator__formelement">
-          <label for="calculator-rainy-day-fund">Rainy Day Fund:</label>
+          <label htmlFor="calculator-rainy-day-fund">Rainy Day Fund:</label>
           <div>
             <span className="calculator__formelementsymbol">
               {currencySymbol}
@@ -55,7 +57,7 @@ function Assets({ assets, currencySymbol, total, handleChange }) {
           </div>
         </div>
         <div className="calculator__formelement">
-          <label for="calculator-savings-for-fun">Savings for Fun:</label>
+          <label htmlFor="calculator-savings-for-fun">Savings for Fun:</label>
           <div>
             <span className="calculator__formelementsymbol">
               {currencySymbol}
@@ -70,7 +72,7 @@ function Assets({ assets, currencySymbol, total, handleChange }) {
           </div>
         </div>
         <div className="calculator__formelement">
-          <label for="calculator-savings-for-travel">Savings for Travel:</label>
+          <label htmlFor="calculator-savings-for-travel">Savings for Travel:</label>
           <div>
             <span className="calculator__formelementsymbol">
               {currencySymbol}
@@ -85,7 +87,7 @@ function Assets({ assets, currencySymbol, total, handleChange }) {
           </div>
         </div>
         <div className="calculator__formelement">
-          <label for="calculator-savings-for-personal-development">
+          <label htmlFor="calculator-savings-for-personal-development">
             Savings for Personal Development:
           </label>
           <div>
@@ -102,7 +104,7 @@ function Assets({ assets, currencySymbol, total, handleChange }) {
           </div>
         </div>
         <div className="calculator__formelement">
-          <label for="calculator-investment-1">Investment 1:</label>
+          <label htmlFor="calculator-investment-1">Investment 1:</label>
           <div>
             <span className="calculator__formelementsymbol">
               {currencySymbol}
@@ -117,7 +119,7 @@ function Assets({ assets, currencySymbol, total, handleChange }) {
           </div>
         </div>
         <div className="calculator__formelement">
-          <label for="calculator-investment-2">Investment 2:</label>
+          <label htmlFor="calculator-investment-2">Investment 2:</label>
           <div>
             <span className="calculator__formelementsymbol">
               {currencySymbol}
@@ -132,7 +134,7 @@ function Assets({ assets, currencySymbol, total, handleChange }) {
           </div>
         </div>
         <div className="calculator__formelement">
-          <label for="calculator-investment-3">Investment 3:</label>
+          <label htmlFor="calculator-investment-3">Investment 3:</label>
           <div>
             <span className="calculator__formelementsymbol">
               {currencySymbol}
@@ -148,7 +150,7 @@ function Assets({ assets, currencySymbol, total, handleChange }) {
         </div>
         <h3 className="calculator__formgrouping">Long Term Assets</h3>
         <div className="calculator__formelement">
-          <label for="calculator-primary-home">Primary Home:</label>
+          <label htmlFor="calculator-primary-home">Primary Home:</label>
           <div>
             <span className="calculator__formelementsymbol">
               {currencySymbol}
@@ -163,7 +165,7 @@ function Assets({ assets, currencySymbol, total, handleChange }) {
           </div>
         </div>
         <div className="calculator__formelement">
-          <label for="calculator-second-home">Second Home:</label>
+          <label htmlFor="calculator-second-home">Second Home:</label>
           <div>
             <span className="calculator__formelementsymbol">
               {currencySymbol}
@@ -178,7 +180,7 @@ function Assets({ assets, currencySymbol, total, handleChange }) {
           </div>
         </div>
         <div className="calculator__formelement">
-          <label for="calculator-other">Other:</label>
+          <label htmlFor="calculator-other">Other:</label>
           <div>
             <span className="calculator__formelementsymbol">
               {currencySymbol}

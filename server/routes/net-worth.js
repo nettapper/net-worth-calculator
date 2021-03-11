@@ -16,7 +16,7 @@ router.post(
       },
     },
     "new-currency": {
-      optional: true,
+      optional: { options: { nullable: true } },
       isAlpha: {
         errorMessage:
           "new currency should contain only alpha chars when present",

@@ -1,7 +1,9 @@
 function Liabilities({ liabilities, currencySymbol, total, handleChange }) {
   const onChange = (e) => {
     const { name, value } = e.target;
-    handleChange({ ...liabilities, [name]: value });
+    const num = Number(value);  // convert str to num
+    if (!isNaN(num))
+      handleChange({ ...liabilities, [name]: num });
   };
 
   return (
@@ -10,7 +12,7 @@ function Liabilities({ liabilities, currencySymbol, total, handleChange }) {
       <form className="calculator__form">
         <h3 className="calculator__formgrouping">Short Term Liabilities</h3>
         <div className="calculator__formelement">
-          <label for="calculator-credit-card-1">Credit Card 1:</label>
+          <label htmlFor="calculator-credit-card-1">Credit Card 1:</label>
           <div>
             <span className="calculator__formelementsymbol">
               {currencySymbol}
@@ -25,7 +27,7 @@ function Liabilities({ liabilities, currencySymbol, total, handleChange }) {
           </div>
         </div>
         <div className="calculator__formelement">
-          <label for="calculator-credit-card-2">Credit Card :2</label>
+          <label htmlFor="calculator-credit-card-2">Credit Card :2</label>
           <div>
             <span className="calculator__formelementsymbol">
               {currencySymbol}
@@ -41,7 +43,7 @@ function Liabilities({ liabilities, currencySymbol, total, handleChange }) {
         </div>
         <h3 className="calculator__formgrouping">Long Term Debt</h3>
         <div className="calculator__formelement">
-          <label for="calculator-mortgage-1">Mortgage 1:</label>
+          <label htmlFor="calculator-mortgage-1">Mortgage 1:</label>
           <div>
             <span className="calculator__formelementsymbol">
               {currencySymbol}
@@ -56,7 +58,7 @@ function Liabilities({ liabilities, currencySymbol, total, handleChange }) {
           </div>
         </div>
         <div className="calculator__formelement">
-          <label for="calculator-mortgage-2">Mortgage 2:</label>
+          <label htmlFor="calculator-mortgage-2">Mortgage 2:</label>
           <div>
             <span className="calculator__formelementsymbol">
               {currencySymbol}
@@ -71,7 +73,7 @@ function Liabilities({ liabilities, currencySymbol, total, handleChange }) {
           </div>
         </div>
         <div className="calculator__formelement">
-          <label for="calculator-line-of-credit">Line of Credit:</label>
+          <label htmlFor="calculator-line-of-credit">Line of Credit:</label>
           <div>
             <span className="calculator__formelementsymbol">
               {currencySymbol}
@@ -86,7 +88,7 @@ function Liabilities({ liabilities, currencySymbol, total, handleChange }) {
           </div>
         </div>
         <div className="calculator__formelement">
-          <label for="calculator-investment-loan">Investment Loan:</label>
+          <label htmlFor="calculator-investment-loan">Investment Loan:</label>
           <div>
             <span className="calculator__formelementsymbol">
               {currencySymbol}
