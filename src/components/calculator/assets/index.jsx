@@ -1,9 +1,8 @@
 function Assets({ assets, currencySymbol, total, handleChange }) {
   const onChange = (e) => {
     const { name, value } = e.target;
-    const num = Number(value);  // convert str to num
-    if (!isNaN(num))
-      handleChange({ ...assets, [name]: num });
+    const num = Number(value); // convert str to num
+    if (!isNaN(num)) handleChange({ ...assets, [name]: num });
   };
 
   return (
@@ -27,7 +26,9 @@ function Assets({ assets, currencySymbol, total, handleChange }) {
           </div>
         </div>
         <div className="calculator__formelement">
-          <label htmlFor="calculator-savings-for-taxes">Savings for Taxes:</label>
+          <label htmlFor="calculator-savings-for-taxes">
+            Savings for Taxes:
+          </label>
           <div>
             <span className="calculator__formelementsymbol">
               {currencySymbol}
@@ -72,7 +73,9 @@ function Assets({ assets, currencySymbol, total, handleChange }) {
           </div>
         </div>
         <div className="calculator__formelement">
-          <label htmlFor="calculator-savings-for-travel">Savings for Travel:</label>
+          <label htmlFor="calculator-savings-for-travel">
+            Savings for Travel:
+          </label>
           <div>
             <span className="calculator__formelementsymbol">
               {currencySymbol}

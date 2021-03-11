@@ -4,6 +4,7 @@ import axios from "axios";
 // Actions
 const NETWORTH_REQUEST = "NETWORTH_REQUEST";
 const NETWORTH_RESPONSE = "NETWORTH_RESPONSE";
+const NETWORTH_RESPONSE_ERROR = "NETWORTH_RESPONSE_ERROR";
 
 // Action Creators
 export function networthRequest(payload) {
@@ -17,6 +18,25 @@ function networthResponse(payload) {
   return {
     type: NETWORTH_RESPONSE,
     payload
+  }
+}
+
+function networthServerError(payload) {
+  let error = [];
+  let warning = [];
+  let info = [];
+
+  if (payload?.error?.length > 0) error = payload.error;
+  if (payload?.warning?.length > 0) warning = payload.warning;
+  if (payload?.info?.length > 0) info = payload.info;
+
+  return {
+    type: NETWORTH_RESPONSE_ERROR,
+    payload: {
+      error,
+      warning,
+      info
+    }
   }
 }
 
@@ -57,6 +77,8 @@ const initState = {
 export function reducer(state = initState, action) {
   const payload = action.payload;
   switch (action.type) {
+    case NETWORTH_RESPONSE_ERROR:
+      // fall through
     case NETWORTH_RESPONSE:
       // returning a copy of state with spread operators
       return { ...state, ...payload };
@@ -67,7 +89,6 @@ export function reducer(state = initState, action) {
 
 // Axios API
 async function postNetworth(payload) {
-  // TODO would be better to have a proxy than hardcode the server
   const res = await axios.post('/api/v1/net-worth', payload);
   return res;
 }
@@ -77,10 +98,12 @@ async function postNetworth(payload) {
 function* requestSaga(action) {
   try {
     const res = yield call(postNetworth, action.payload);
-    // todo validations
-    yield put(networthResponse(res.data));
+    if (res?.data?.error?.length > 0)
+      yield put(networthServerError(res.data));
+    else
+      yield put(networthResponse(res.data));
   } catch(e) {
-    console.log(e);
+    // console.log(e);
     yield put(networthResponse({ error: ["Could not complete API call successfully"] }));
   }
 }
