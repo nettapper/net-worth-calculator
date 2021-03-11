@@ -26,15 +26,15 @@ function Calculator() {
     "USD",
   ];
 
-  const currentCurrency = state["new-currency"] ? state["new-currency"] : state["current-currency"];
-  const [currencySymbol, setCurrencySymbol] = useState(getCurrencySymbol(currentCurrency));
+  const currentCurrencySelector = state["new-currency"] ? state["new-currency"] : state["current-currency"];
+  // only update the currencySymbol once the http response has resolved (aka redux state has changed)
+  // this way the currency selector & currencySymbol are independent
+  const currentCurrency = reduxState["new-currency"] ? reduxState["new-currency"] : reduxState["current-currency"];
+  const currencySymbol = getCurrencySymbol(currentCurrency);
 
   // update the local state if the ruduxState changes
   useEffect(() => {
     setState(reduxState);
-    // only update the currencySymbol once the http response has resolved (aka redux state has changed)
-    // this way the currency selector & currencySymbol are independent
-    setCurrencySymbol(getCurrencySymbol(reduxState["current-currency"]));
   }, [reduxState]);
 
 
@@ -49,21 +49,21 @@ function Calculator() {
   return (
     <div className="calculator">
       <NetWorth
-        currentCurrency={currentCurrency}
+        currentCurrency={currentCurrencySelector}
         currencies={currencies}
-        total={formatCurrency(state["total-net-worth"], currentCurrency)}
+        total={formatCurrency(reduxState["total-net-worth"], currentCurrency)}
         handleChange={(update) => handleChange("new-currency", update)}
       />
       <Assets
         assets={state.assets}
         currencySymbol={currencySymbol}
-        total={formatCurrency(state["total-assets"], currentCurrency)}
+        total={formatCurrency(reduxState["total-assets"], currentCurrency)}
         handleChange={(update) => handleChange("assets", update)}
       />
       <Liabilities
         liabilities={state.liabilities}
         currencySymbol={currencySymbol}
-        total={formatCurrency(state["total-liabilities"], currentCurrency)}
+        total={formatCurrency(reduxState["total-liabilities"], currentCurrency)}
         handleChange={(update) => handleChange("liabilities", update)}
       />
     </div>
