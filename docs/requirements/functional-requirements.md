@@ -40,6 +40,6 @@ currency for each of the editable rows.
   - [x] and include the new currency sign on the left for each of the updated values.
 - [x] The service should include unit tests to cover all API calls.
 - [x] Diagram your design and prepare to explain your design choices.
-- [ ] 48 hours prior to your interview please share the code with your contact
+- [x] 48 hours prior to your interview please share the code with your contact
 at Intuit.
   - [x] Use github or similar software version control.
