@@ -1,6 +1,12 @@
 version: 2.1
 
 jobs:
+  setup:
+    docker:
+      - image: node:current-alpine
+    steps:
+      - checkout
+      - run: npm install
   build:
     docker:
       - image: node:current-alpine
@@ -24,12 +30,15 @@ jobs:
 workflows:
   build_and_test:
     jobs:
-      - build
+      - setup
+      - build:
+          requires:
+            - setup
       - test-frontend:
           requires:
-            - build
+            - setup
       - test-server:
           requires:
-            - build
+            - setup
 
 
