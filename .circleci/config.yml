@@ -6,24 +6,55 @@ jobs:
       - image: node:current-alpine
     steps:
       - checkout
-      - run: npm install
+      - restore_cache:
+          keys:
+            - npm-deps-{{ checksum "package-lock.json" }}
+            - npm-deps
+      - run:
+          name: npm install
+          command: npm install
+      - save_cache:
+          paths:
+            - node_modules
+          key: npm-deps-{{ checksum "package-lock.json" }}-{{ epoch }}
   build:
     docker:
       - image: node:current-alpine
     steps:
       - checkout
+      - restore_cache:
+          keys:
+            - npm-deps-{{ checksum "package-lock.json" }}
+            - npm-deps
+      - run:
+          name: npm install
+          command: npm install
       - run: npm run build
   test-frontend:
     docker:
       - image: node:current-alpine
     steps:
       - checkout
+      - restore_cache:
+          keys:
+            - npm-deps-{{ checksum "package-lock.json" }}
+            - npm-deps
+      - run:
+          name: npm install
+          command: npm install
       - run: npm run test
   test-server:
     docker:
       - image: node:current-alpine
     steps:
       - checkout
+      - restore_cache:
+          keys:
+            - npm-deps-{{ checksum "package-lock.json" }}
+            - npm-deps
+      - run:
+          name: npm install
+          command: npm install
       - run: npm run test-server
 
 # Orchestrate our job run sequence
